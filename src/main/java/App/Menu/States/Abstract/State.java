@@ -1,6 +1,6 @@
-package App.Menu.Abstract;
+package App.Menu.States.Abstract;
 
-import App.Menu.HabitApp;
+import App.Menu.Context.HabitApp;
 
 public abstract class State {
     protected HabitApp context;

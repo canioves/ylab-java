@@ -19,7 +19,7 @@ public class UserController {
         User newUser = new User(userName, email, password);
         userStorage.put(email, newUser);
 
-        System.out.printf("Поьзователь %s успешно зарегестрирован%n", userName);
+        System.out.printf("Пользователь %s успешно зарегестрирован%n", userName);
 
         return newUser;
     }
@@ -28,13 +28,32 @@ public class UserController {
         User existingUser = this.userStorage.get(email);
         if (existingUser == null) throw new NoSuchElementException("Пользователь не существует");
         if (!password.contentEquals(existingUser.getPassword()))
-            throw new IllegalArgumentException("Неправильный емайл или пароль");
+            throw new IllegalArgumentException("Неверные данные для входа");
 
         System.out.println("Вход выполнен");
         return existingUser;
     }
 
-    public void addUser(User user) {
-        userStorage.put(user.getEmail(), user);
+
+    public User updateUserCredentials(String oldEmail, String newUserName, String newEmail, String newPassword) {
+        User newUser = new User(newUserName, newEmail, newPassword);
+
+        if (!oldEmail.contentEquals(newEmail)) {
+            this.userStorage.remove(oldEmail);
+        }
+
+        this.userStorage.put(newEmail, newUser);
+        return newUser;
     }
+
+    public void deleteUser(String email) {
+        this.userStorage.remove(email);
+    }
+
+    public void addTestUser() {
+        User testUser = new User("test", "test@mail.com", "qwerty");
+        this.userStorage.put("test@mail.com", testUser);
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package App.Models;
 
+import java.util.Objects;
+
 public class User {
     private String userName;
     private String email;
@@ -33,5 +35,17 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof User user)) return false;
+        return Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getPassword(), user.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmail(), getPassword());
     }
 }

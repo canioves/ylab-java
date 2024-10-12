@@ -1,7 +1,7 @@
-package App.Menu.Concrete.MainMenuStates;
+package App.Menu.States.Concrete.MainMenuStates;
 
-import App.Menu.Abstract.State;
-import App.Menu.HabitApp;
+import App.Menu.States.Abstract.State;
+import App.Menu.Context.HabitApp;
 
 public class HabitMenuState extends State {
     public HabitMenuState(HabitApp context) {
